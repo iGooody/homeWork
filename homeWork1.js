@@ -66,4 +66,4 @@ const myIterable = {
         yield i;
       }
     },
-};g
+};
