@@ -31,29 +31,38 @@ function selectFromInterval(array, first, second) {
 
         const start = Math.min(first, second);
         const end = Math.max(first, second);
-        
+
         return array.filter((number) => (number > start) && (number <= end));
 } 
 
 
 const myIterable = {
-    from: 1,
+    from: 'aaa',
     to: 4,
-    [Symbol.iterator]: function* () {
-      if (
-        typeof this.from !== 'number' ||
-        typeof this.to !== 'number'
-      ) 
-      {
-        throw new Error('You should input numbers');
-      }
-  
-      if (this.to < this.from) {
-        throw new Error('To should be greater than or equal to From');
-      }
-  
-      for (let i = this.from; i <= this.to; i++) {
-        yield i;
-      }
+    [Symbol.iterator]: function () {
+        if (
+            typeof this.from !== 'number' ||
+            typeof this.to !== 'number'
+        ) {
+            throw new Error('You should input numbers');
+        }
+
+        if (this.to < this.from) {
+            throw new Error('To should be greater than or equal to From');
+        }
+
+        let current = this.from;
+
+        const iterator = {
+            next: () => {
+                if (current <= this.to) {
+                    return { done: false, value: current++ };
+                } else {
+                    return { done: true };
+                }
+            }
+        };
+
+        return iterator;
     },
 };
