@@ -17,34 +17,24 @@ function makeObjectDeepCopy(obj) {
 }
 
 function selectFromInterval(array, first, second) {
-    try {
         if (!Array.isArray(array)) {
-            throw new Error('...');
+            throw new Error('The input parametr is not an array');
         }
 
-        let arr = [];
-
-        if (Number.isFinite(first) && Number.isFinite(second)) {
-            const start = Math.min(first, second);
-            const end = Math.max(first, second);
-
-            for (let i = 0; i < array.length; i++) {
-                if (!Number.isFinite(array[i])) {
-                    throw new Error('...');
-                }
-
-                if ((array[i] >= start) && array[i] <= end) {
-                    arr.push(array[i]);
-                }
-            }
+        if (!array.every((value) => Number.isFinite(value))) {
+            throw new Error('Inputed array should contain only numbers');
         }
 
-        return arr;
+        if (!Number.isFinite(first) || !Number.isFinite(second)) {
+           throw new Error('Incorrect interval params')
+        }
 
-    } catch (err) {
-        return err;
-    }
-}
+        const start = Math.min(first, second);
+        const end = Math.max(first, second);
+        
+        return array.filter((number) => (number > start) && (number <= end));
+} 
+
 
 const myIterable = {
     from: 1,

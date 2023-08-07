@@ -4,8 +4,8 @@ let second = +prompt('Enter second number');
 function numbersBaseChange(first, second) {
     if (
         Number.isFinite(first) &&
-        Number.isFinite(second) &&
-        second <= 36 && second >= 2
+        Number.isInteger(second) &&
+        second <= 36 && second >= 2 
     ) {
         console.log(first.toString(second));
     } else {
