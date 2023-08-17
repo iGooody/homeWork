@@ -55,7 +55,7 @@ const myIterable = {
 
         let current = this.from;
 
-        const iterator = {
+        return iterator = {
             next: () => {
                 if (current <= this.to) {
                     return { done: false, value: current++ };
@@ -64,7 +64,5 @@ const myIterable = {
                 }
             }
         };
-
-        return iterator;
     },
 };

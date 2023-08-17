@@ -1,5 +1,5 @@
-let first = +prompt('Enter first number');
-let second = +prompt('Enter second number');
+const first = +prompt('Enter first number');
+const second = +prompt('Enter second number');
 
 function numbersBaseChange(first, second) {
     if (
@@ -16,8 +16,8 @@ function numbersBaseChange(first, second) {
 numbersBaseChange(first, second);
 
 
-let value1 = +prompt('Enter first value');
-let value2 = +prompt('Enter second value');
+const value1 = +prompt('Enter first value');
+const value2 = +prompt('Enter second value');
 
 function sumAndDivisionResult(value1, value2) {
     if (!Number.isFinite(value1) || !Number.isFinite(value2)) {
