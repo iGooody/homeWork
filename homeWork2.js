@@ -37,12 +37,14 @@ function selectFromInterval(array, first, second) {
 
 
 const myIterable = {
-    from: 'aaa',
+    from: 1,
     to: 4,
     [Symbol.iterator]: function () {
         if (
             typeof this.from !== 'number' ||
-            typeof this.to !== 'number'
+            typeof this.to !== 'number' ||
+            isNaN(this.from) ||
+            isNaN(this.to)
         ) {
             throw new Error('You should input numbers');
         }
