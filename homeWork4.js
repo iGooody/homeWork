@@ -1,48 +1,67 @@
-// function concatStrings(initialString, separator) {
-//     let result = initialString || '';
-//     if (initialString === null) {}
+function concatStrings(initialString, separator) {
+    if (typeof initialString !== 'string') {
+      return '';
+    }
   
-//     function innerConcat(nextString) {
-//       if (typeof nextString === 'string') {
-//         if (result!== '' && typeof separator === 'string') {
-//           result += separator + nextString;
-//         } else  {
-//           result += nextString;
-//         }
-//         return innerConcat;
-//       }
-//       return result;
-//     }
+    let result = initialString;
   
-//     return innerConcat;
-//   }
+    function innerConcat(nextString) {
+      if (typeof nextString === 'string') {
+        result += (separator || '') + nextString;
+        return innerConcat;
+      }
+      return result;
+    }
   
-//   // Примеры использования
-//   console.log(concatStrings('first')('second')('third')()); // 'firstsecondthird'
-//   console.log(concatStrings(null, null)('second')()); // 'firstsecond'
-//   console.log(concatStrings('first', '123')('second')('third')()); // 'first123second123third'
-//   console.log(concatStrings('some-value')('')('')(null)); // 'some-value'
-//   console.log(concatStrings('some-value')('test')()); // 'some-value'
-//   console.log(concatStrings('some-value')('333')(123n)); // 'some-val333'
+    return innerConcat;
+}
 
-  const curry = fn => {
-    const innerFn = (N, args) => {
-      return (...x) => {
-        if (N <= x.length) {
-          return fn(...args, ...x);
+class Calculator {
+    constructor(x, y) {
+        if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        throw new Error('x и y должны быть валидными числами');
         }
-        return innerFn(N - x.length, [...args, ...x]);
-      };
-    };
-  
-    return innerFn(fn.length, []);
-  };
-  
-  
-const concatStrings = curry(concatStrings);
-console.log(concatStrings('first')('second')('third')()); // 'firstsecondthird'
-console.log(concatStrings(null, null)('second')()); // 'firstsecond'
-console.log(concatStrings('first', '123')('second')('third')()); // 'first123second123third'
-console.log(concatStrings('some-value')('')('')(null)); // 'some-value'
-console.log(concatStrings('some-value')('test')()); // 'some-value'
-console.log(concatStrings('some-value')('333')(123n)); // 'some-val333'
+
+        this.x = x;
+        this.y = y;
+        this.logSum = this.logSum.bind(this);
+        this.logMul = this.logMul.bind(this);
+        this.logSub = this.logSub.bind(this);
+        this.logDiv = this.logDiv.bind(this);
+    }
+
+    setX(num) {
+        if (!Number.isFinite(num)) {
+        throw new Error('x должен быть валидным числом');
+        }
+
+        this.x = num;
+    }
+
+    setY(num) {
+        if (!Number.isFinite(num)) {
+        throw new Error('y должен быть валидным числом');
+        }
+
+        this.y = num;
+    }
+
+    logSum() {
+        console.log(this.x + this.y);
+    }
+
+    logMul() {
+        console.log(this.x * this.y);
+    }
+
+    logSub() {
+        console.log(this.x - this.y);
+    }
+
+    logDiv() {
+        if (this.y === 0) {
+        throw new Error('Не могу делить на 0');
+        }
+        console.log(this.x / this.y);
+    }
+}
