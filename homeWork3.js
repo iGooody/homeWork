@@ -1,26 +1,34 @@
-Array.prototype.myFilter = function(callback, thisArg) {
-    if (typeof callback !== 'function') {
-      throw new Error('сallback should be a function');
-    }
-  
-    const arr = [];
-    
-    this.forEach((element, index, array) => {
-      if (callback.call(thisArg, element, index, array)) {
-        arr.push(element);
-      }
-    });
-  
-    return arr;
-  };
- 
-function createDebounceFunction(callback, delay) {
-  let timer = 0;
+function concatStrings(initialString, separator) {
+  if (typeof initialString !== 'string') {
+      const fn =  () => {
+          return fn;
+      };
 
-  return function (...args) {
-    clearTimeout(timer);
-    timer = setTimeout(function() {
-      callback.call(this, ...args);
-    }, delay);
-  };
+      fn.toString = function() { return ''; };
+
+      return fn;
+  }
+
+  let result = initialString;
+  let isValid = true;
+
+
+  function innerConcat(nextString) {
+      innerConcat.toString = function () { return result }
+
+      if (!isValid) {
+          return innerConcat;
+      }
+
+      if (typeof nextString === 'string') {
+          result += (separator || '') + nextString;
+      } else {
+          isValid = false;
+      }
+
+
+      return innerConcat;
+  }
+
+  return innerConcat;
 }

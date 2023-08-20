@@ -18,12 +18,16 @@ export default class Car {
         this.#fuelConsumption = fuelConsumption;
     }
 
+     isValidString(value) {
+        return typeof value === 'string' && value.length >= 1 && value.length <= 50;
+    }
+
     get brand() {
         return this.#brand;
     }
 
     set brand(value) {
-        if (typeof value === 'string' && value.length >= 1 && value.length <= 50) {
+        if (this.isValidString(value)) {
             this.#brand = value;
         } else {
             throw new Error('Некорректное значение бренда');
@@ -35,12 +39,13 @@ export default class Car {
     }
 
     set model(value) {
-        if (typeof value === 'string' && value.length >= 1 && value.length <= 50) {
+        if (this.isValidString(value)) {
             this.#model = value;
         } else {
             throw new Error('Некорректное значение модели');
         }
     }
+
 
     get yearOfManufacturing() {
         return this.#yearOfManufacturing;
