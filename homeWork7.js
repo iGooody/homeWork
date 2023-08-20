@@ -15,7 +15,7 @@ function setOperator(op) {
         operator = op;
         currentValue = '';
         display.value = firstOperand + ' ' + operator;
-        newCalculation = false; // Убираем флаг нового расчета
+        newCalculation = false;
     }
 }
 
@@ -62,9 +62,8 @@ function calculate() {
         result = parseFloat(result);
         result = result.toFixed(result % 1 === 0 ? 0 : Math.min(8, result.toString().split('.')[1].length));
 
-        // Обрабатываем отрицательные значения
         if (result < 0) {
-            currentValue = '-' + Math.abs(result).toString(); // Добавляем знак "-" и абсолютное значение
+            currentValue = '-' + Math.abs(result).toString(); 
         } else {
             currentValue = result.toString();
         }
