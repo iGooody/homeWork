@@ -1,4 +1,4 @@
-class Car {
+export default class Car {
     #brand;
     #model;
     #yearOfManufacturing;
@@ -155,5 +155,3 @@ class Car {
         this.#mileage += distance;
     }
 }
-
-export { Car };

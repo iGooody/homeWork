@@ -1,42 +1,53 @@
 class Stack {
-    constructor () {
-        this.stack = [];
+    constructor(maxSize = 10) {
+        if (!Number.isInteger(maxSize) || maxSize <= 0) {
+            throw new Error('Неверный параметр максимального размера стэка');
+        }
+        this.maxSize = maxSize;
+        this.items = [];
     }
 
     push(elem) {
-        if (this.stack.length >= 10) {
-            throw new Error('Stack is overloaded');
+        if (this.items.length >= this.maxSize) {
+            throw new Error('Стэк переполнен');
         }
-        this.stack.push(elem);
+        this.items[this.items.length] = elem;
     }
 
     pop() {
-        if (this.stack.length === 0) {
-            throw new Error('Stack is empty');
+        if (this.isEmpty()) {
+            throw new Error('Стэк пуст');
         }
-        return this.stack.pop();
+        const poppedItem = this.items[this.items.length - 1];
+        this.items.length = this.items.length - 1;
+        return poppedItem;
     }
 
     peek() {
-        if (this.stack.length === 0) {
+        if (this.isEmpty()) {
             return null;
         }
-        return this.stack[this.stack.length - 1];
+        return this.items[this.items.length - 1];
     }
 
     isEmpty() {
-        return this.stack.length === 0;
+        return this.items.length === 0;
     }
 
     toArray() {
-        return [...this.stack];
+        return [...this.items];
     }
 
     static fromIterable(iterable) {
-        const stack = new Stack();
+        if (!Symbol.iterator in Object(iterable)) {
+            throw new Error('Ввод не итерируемый');
+        }
+        const stack = new Stack(iterable.length);
         for (const item of iterable) {
             stack.push(item);
         }
         return stack;
     }
 }
+
+module.exports = { Stack };
