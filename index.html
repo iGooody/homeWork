@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script async src="homeWork7.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Простой калькулятор</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="display" readonly>
+    <span class="MC">
+        <P>MC</P>
+        <P>MR</P>
+        <P>M-</P>
+        <P>M+</P>
+    </span>
+    </div>
+    <div class="calc">
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button class="graybtn" onclick="negate()">+/-</button>
+        <button class="graybtn" onclick="clearOne()">-></button>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button class = "operator" onclick="setOperator('*')">x</button>
+        <button class = "operator" onclick="setOperator('/')">÷</button>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button class = "operator" onclick="setOperator('-')">-</button>
+        <button class="double-width" onclick="calculate()">=</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button class = "operator" onclick="setOperator('+')">+</button>
+    </div>
+</body>
+</html>

@@ -32,3 +32,4 @@ function concatStrings(initialString, separator) {
 
   return innerConcat;
 }
+console.log(String(concatStrings('e', 'e')('test')('asd')('asd')))
