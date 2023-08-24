@@ -44,6 +44,7 @@ class Car {
 
     _isValidYear(value) {
         const currentYear = new Date().getFullYear();
+
         return Number.isInteger(value) && value >= 1900 && value <= currentYear;
     }
 
@@ -190,6 +191,7 @@ class Car {
 
         this.#currentFuelVolume += amount;
     }
+    
     drive(speed, hours) {
         if (!this._isValidSpeedValue(speed) || !this._isValidHoursValue(hours)) {
             throw new Error(ERROR_MESSAGES.INVALID_SPEED);
