@@ -1,42 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
     <script async src="homeWork7.js"></script>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Простой калькулятор</title>
-</head>
-<body>
-    <div>
-        <input type="text" id="display" readonly>
-    <span class="MC">
-        <P>MC</P>
-        <P>MR</P>
-        <P>M-</P>
-        <P>M+</P>
-    </span>
-    </div>
-    <div class="calc">
-        <button onclick="appendToDisplay('7')">7</button>
-        <button onclick="appendToDisplay('8')">8</button>
-        <button onclick="appendToDisplay('9')">9</button>
-        <button class="graybtn" onclick="negate()">+/-</button>
-        <button class="graybtn" onclick="clearOne()">-></button>
-        <button onclick="appendToDisplay('4')">4</button>
-        <button onclick="appendToDisplay('5')">5</button>
-        <button onclick="appendToDisplay('6')">6</button>
-        <button class = "operator" onclick="setOperator('*')">x</button>
-        <button class = "operator" onclick="setOperator('/')">÷</button>
-        <button onclick="appendToDisplay('1')">1</button>
-        <button onclick="appendToDisplay('2')">2</button>
-        <button onclick="appendToDisplay('3')">3</button>
-        <button class = "operator" onclick="setOperator('-')">-</button>
-        <button class="double-width" onclick="calculate()">=</button>
-        <button class="clear" onclick="clearDisplay()">C</button>
-        <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="appendToDisplay('.')">.</button>
-        <button class = "operator" onclick="setOperator('+')">+</button>
-    </div>
-</body>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Простой калькулятор</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="calculator">
+              <div class="displayedvalue">
+                <input type="text" id ="display" value="0" readonly>
+                <div class="line-wrapper">
+                  <div class="line"></div>
+                </div>
+                <div class="sum" onclick="copyToClipboard('secondSumDisplay')">
+                  <input type="text" id="secondSumDisplay" value="0" readonly>
+                </div>
+              </div>
+                  <div class="mbtns">
+                  <button class="mbtn" onclick="memoryClear()">MC</button>
+                  <button class="mbtn" onclick="memoryRecall()">MR</button>
+                  <button class="mbtn" onclick="memoryAdd()">M+</button>
+                  <button class="mbtn" onclick="memorySubtract()">M-</button>
+                </div>
+                <div class="calculator-buttons">
+                    <button class="btn" onclick="appendToDisplay('7')">7</button>
+                    <button class="btn" onclick="appendToDisplay('8')">8</button>
+                    <button class="btn" onclick="appendToDisplay('9')">9</button>
+                    <button class="btn whitegray" onclick="negate()">+/-</button>
+                    <button class="btn whitegray" onclick="clearOne()">→</button>
+                    <button class="btn" onclick="appendToDisplay('4')">4</button>
+                    <button class="btn" onclick="appendToDisplay('5')">5</button>
+                    <button class="btn" onclick="appendToDisplay('6')">6</button>
+                    <button class="btn gray operator" onclick="setOperator('x')">x</button>
+                    <button class="btn gray operator" onclick="setOperator('÷')">÷</button>
+                    <button class="btn" onclick="appendToDisplay('1')">1</button>
+                    <button class="btn" onclick="appendToDisplay('2')">2</button>
+                    <button class="btn" onclick="appendToDisplay('3')">3</button>
+                    <button class="btn gray" onclick="setOperator('-')">-</button>
+                    <button class="equals" id="equals" onclick="calculate()">=</button>
+                    <button class="btn red" onclick="clearDisplay()">C</button>
+                    <button class="btn" onclick="appendToDisplay('0')">0</button>
+                    <button class="btn" onclick="appendToDisplay('.')">.</button>
+                    <button class="btn gray operator" onclick="setOperator('+')">+</button> 
+                </div>
+                <div class="decimal-places" onclick="changeDecimalPlaces()">
+                  Количество знаков после запятой: <span id="decimalPlacesCount">2</span>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

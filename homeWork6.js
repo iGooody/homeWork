@@ -9,6 +9,8 @@ const ERROR_MESSAGES = {
     FUEL_TANK_OVERFLOW: 'Топливный бак переполнен',
     LOW_FUEL: 'Недостаточно топлива',
 };
+<button class="btn is-clear span-2 orange operator">C</button>
+<button class="btn orange operator">&larr;</button>
 
 class Car {
     #brand;
@@ -191,7 +193,7 @@ class Car {
 
         this.#currentFuelVolume += amount;
     }
-    
+
     drive(speed, hours) {
         if (!this._isValidSpeedValue(speed) || !this._isValidHoursValue(hours)) {
             throw new Error(ERROR_MESSAGES.INVALID_SPEED);
