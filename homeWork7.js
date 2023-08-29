@@ -1,5 +1,5 @@
-let display = document.getElementById('display');
-let secondSumDisplay = document.getElementById('secondSumDisplay');
+const display = document.getElementById('display');
+const secondSumDisplay = document.getElementById('secondSumDisplay');
 let currentValue = '';
 let operator = '';
 let firstOperand = '';
@@ -11,6 +11,16 @@ function appendToDisplay(value) {
     currentValue += value;
     display.value = currentValue;
     secondSumDisplay.value = currentValue;
+}
+
+function clearDisplay() {
+    currentValue = '';
+    display.value = '0';
+}
+
+function clearOne() {
+    currentValue = currentValue.slice(0, -1);
+    display.value = currentValue;
 }
 
 function memoryClear() {
@@ -34,12 +44,12 @@ function memorySubtract() {
     }
 }
 
-function setOperator(op) {
+function setOperator(operation) {
     if (currentValue !== '') {
         firstOperand = currentValue;
-        operator = op;
+        operator = operation;
         currentValue = '';
-        display.value = firstOperand + ' ' + operator;
+        display.value = `${firstOperand} ${operator}`;
         newCalculation = false;
     }
 }
@@ -51,16 +61,6 @@ function negate() {
     }
 }
 
-function clearDisplay() {
-    currentValue = '';
-    display.value = '0';
-}
-
-function clearOne() {
-    currentValue = currentValue.slice(0, -1);
-    display.value = currentValue;
-}
-
 function copyToClipboard(elementId) {
     const sumDisplay = document.getElementById(elementId);
     const sumValue = sumDisplay.value;
@@ -70,8 +70,8 @@ function copyToClipboard(elementId) {
             .then(() => {
                 alert(`Сумма ${sumValue} скопирована в буфер обмена`);
             })
-            .catch(err => {
-                console.error('Не удалось скопировать текст: ', err);
+            .catch(error => {
+                console.error('Не удалось скопировать текст: ', error);
             });
     }
 }
@@ -83,15 +83,15 @@ function setDecimalPlaces(count) {
 
 function changeDecimalPlaces() {
     const newCount = prompt('Введите новое количество знаков после запятой:');
-    if (newCount !== null && newCount!== '') {
+    if (newCount !== null && newCount !== '' && newCount <= 12) {
         setDecimalPlaces(parseInt(newCount));
     }
 }
 
 function calculate() {
     if (currentValue !== '' && firstOperand !== '' && operator !== '') {
-        let tempCurrentValue = currentValue;
-    
+        const tempCurrentValue = currentValue;
+
         switch (operator) {
             case '+':
                 result = (parseFloat(firstOperand) + parseFloat(tempCurrentValue)).toString();
@@ -110,21 +110,20 @@ function calculate() {
                 result = (parseFloat(firstOperand) / parseFloat(tempCurrentValue)).toString();
                 break;
         }
-    
+
         result = parseFloat(result).toFixed(decimalPlaces);
-    
+
         if (result < 0) {
-            currentValue = '-' + Math.abs(result).toString(); 
+            currentValue = '-' + Math.abs(result).toString();
         } else {
             currentValue = result.toString();
         }
-    
+
         firstOperand = '';
         operator = '';
-    
+
         display.value = currentValue;
         secondSumDisplay.value = currentValue;
         newCalculation = true;
     }
-   
 }
